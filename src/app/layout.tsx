@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Kumbh_Sans } from "next/font/google";
 import "./globals.css"
 import Header from '@/components/Header'
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Kumbh_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -16,11 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-[#f2f2f2]`}>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${inter.className} bg-[#f2f2f2]`}>
+
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
