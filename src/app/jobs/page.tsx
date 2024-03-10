@@ -24,7 +24,10 @@ export default async function page({ searchParams }: any) {
     if (userId && status) {
         allJobs = await prisma.jobs.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } })
     } else {
-        if (searchParams) {
+        if (!userId && status) {
+            allJobs = await prisma.jobs.findMany({ orderBy: { createdAt: 'desc' } })
+        }
+        else if (!userId && !status) {
             allJobs = await prisma.jobs.findMany({
                 where: {
                     OR: [
@@ -43,13 +46,16 @@ export default async function page({ searchParams }: any) {
                 orderBy: {
                     createdAt: 'desc'
                 }
-            }
-            )
-
-        } else {
+            })
+        }
+        else {
             allJobs = await prisma.jobs.findMany({ orderBy: { createdAt: 'desc' } })
         }
     }
+
+
+
+
 
     return (
         <div className='maxWidth -mt-[39px] relative z-10'>
