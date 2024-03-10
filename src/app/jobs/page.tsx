@@ -3,19 +3,29 @@ import JobCard from '@/components/JobCard'
 import Image from 'next/image'
 import prisma from '@/lib/db/prisma'
 import { CreateJobSchema } from '@/lib/validation/jobs'
+import { auth } from '@clerk/nextjs'
 
 
-export default async function page() {
+export default async function page({ searchParams }: any) {
 
-    // const {userId} = auth()
+    // console.log(searchParams);
 
-    const allJobs = await prisma.jobs.findMany()
+
+    const { userId } = auth()
+
+    let allJobs
+    if (userId) {
+        allJobs = await prisma.jobs.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } })
+    } else {
+        allJobs = await prisma.jobs.findMany({ orderBy: { createdAt: 'desc' } })
+    }
+
 
     return (
         <div className='maxWidth -mt-[39px] relative z-10'>
             {/* filters */}
 
-            <div className='bg-white rounded-md shadow-md grid grid-cols-3 mb-[105px]'>
+            <form className='bg-white rounded-md shadow-md grid grid-cols-3 mb-[105px]'>
                 <div className=' flex gap-4 py-7 px-8 '>
                     <Image
                         src={'/desktop/icon-search.svg'}
@@ -24,7 +34,7 @@ export default async function page() {
                         height={24}
                     />
 
-                    <input type="text" placeholder='Filter by title, companies, expertise' className='outline-none w-full' />
+                    <input name='job' type="text" placeholder='Filter by title, companies, expertise' className='outline-none w-full' />
 
                 </div>
                 <div className=' flex gap-4 py-7 px-8 '>
@@ -35,12 +45,12 @@ export default async function page() {
                         height={24}
                     />
 
-                    <input type="text" placeholder='Filter by location…' className='outline-none w-full' />
+                    <input name='location' type="text" placeholder='Filter by location…' className='outline-none w-full' />
                 </div>
                 <div className='flex items-center justify-center'>
-                    <button className='font-bold px-[35.5px] py-3 text-white bgblue rounded-[5px]'>Search</button>
+                    <button type='submit' className='font-bold px-[35.5px] py-3 text-white bgblue rounded-[5px]'>Search</button>
                 </div>
-            </div>
+            </form>
 
             {/* job listing */}
 
@@ -52,10 +62,10 @@ export default async function page() {
                         )
                     })
                 }
-                {/* <JobCard />
-                <JobCard />
-                <JobCard />
-                <JobCard /> */}
+                {
+                    !allJobs &&
+                    <p>No job entries with this filter</p>
+                }
 
             </div>
         </div>

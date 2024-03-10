@@ -4,6 +4,7 @@ import prisma from '@/lib/db/prisma'
 import { CreateJobSchema } from '@/lib/validation/jobs';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { auth } from '@clerk/nextjs';
 
 interface TimePassed {
     days: number;
@@ -47,10 +48,10 @@ export default async function page({ params }: { params: { id: string } }) {
 
     //create a function that if all jobs are null return not-found
 
+    const { userId } = auth()
+
     const stringedTime = allJobs!.createdAt
     const timePassed: TimePassed = getTimePassed(stringedTime.toString());
-
-    console.log(allJobs);
 
     return (
         <div className='max-w-[730px] w-full mx-auto -mt-[39px] relative z-10'>
@@ -75,7 +76,6 @@ export default async function page({ params }: { params: { id: string } }) {
                                         timePassed.hours === 0 ? `${timePassed.minutes} mins` :
                                             `${timePassed.hours} hours`} ago</p>
                         </div>
-                        {/* <Button>Company Site</Button> */}
                     </div>
                 </div>
                 <div className='bg-white w-full h-fit shadow-md rounded-[6px] p-12 flex flex-col gap-10'>

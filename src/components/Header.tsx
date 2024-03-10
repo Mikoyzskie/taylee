@@ -5,14 +5,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from "@clerk/nextjs";
 import { UserButton } from "@clerk/nextjs";
-import AddJobDialog from './AddJobDialog';
+import AddJobDialog from './AddEditJobDialog';
 import { Button } from './ui/button';
 
 export default function Header() {
 
     const { isLoaded, userId, sessionId, getToken } = useAuth();
 
-    const [create, setCreate] = useState(false)
+    const [createEdit, setCreateEdit] = useState(false)
     return (
         <>
             <header className='relative '>
@@ -39,15 +39,15 @@ export default function Header() {
                         userId &&
                         <div className='flex justify-center items-center gap-5 mb-auto'>
                             <Link href={"/jobs"} className='text-white'>Job List</Link>
+                            <Button onClick={() => { setCreateEdit(true) }}>Post Job</Button>
                             <UserButton />
-                            <Button onClick={() => { setCreate(true) }}>Post Job</Button>
                         </div>
                     }
                 </div>
 
             </header>
 
-            {setCreate && <AddJobDialog open={create} setOpen={setCreate} />}
+            {setCreateEdit && <AddJobDialog open={createEdit} setOpen={setCreateEdit} />}
         </>
 
     )
