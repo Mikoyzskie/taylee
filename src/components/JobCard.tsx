@@ -48,9 +48,9 @@ export default function JobCard({ job }: IJob) {
 
     return (
         <Link href={`/jobs/${job.id}`} className='bg-white relative rounded-md'>
-            <div className='bg-[#E99210] h-[50px] w-[50px] flex items-center justify-center absolute -top-[25px] left-8 rounded-[15px] overflow-hidden'>
+            <div className='border-2 border-[#5964E0] h-[50px] w-[50px] flex items-center justify-center absolute -top-[25px] left-8 rounded-[15px] overflow-hidden'>
                 <Image
-                    src={'https://res.cloudinary.com/dipdd169x/image/upload/v1710006694/joblisting%20logos/Job_35_-_Time_Square_Apartments_ygjzzh.png'}
+                    src={job.companylogo}
                     alt='company logo'
                     width={50}
                     height={50}

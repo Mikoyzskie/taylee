@@ -18,10 +18,12 @@ model Jobs {
   title       String
   description String?
   companyname String
-  companylogo String?
+  companylogo String
   country     String
+  site        String
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt
+  userId      String
 
   @@map("jobs")
 }

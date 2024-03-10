@@ -24,6 +24,7 @@ export default function AddJobDialog({ open, setOpen }: IAddJob) {
             companylogo: "",
             companyname: "",
             country: "",
+            site: "",
         }
     })
 
@@ -60,9 +61,9 @@ export default function AddJobDialog({ open, setOpen }: IAddJob) {
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Note Title</FormLabel>
+                                    <FormLabel>Job Title</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="title" {...field} />
+                                        <Input placeholder="e.g Marketing Analyst" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -73,9 +74,9 @@ export default function AddJobDialog({ open, setOpen }: IAddJob) {
                             name="country"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>country</FormLabel>
+                                    <FormLabel>Country</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="country" {...field} />
+                                        <Input placeholder="e.g Philippines" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -86,9 +87,9 @@ export default function AddJobDialog({ open, setOpen }: IAddJob) {
                             name="companylogo"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>companylogo</FormLabel>
+                                    <FormLabel>Company Logo</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="companylogo" {...field} />
+                                        <Input placeholder="Cloudinary logo link" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -99,9 +100,22 @@ export default function AddJobDialog({ open, setOpen }: IAddJob) {
                             name="companyname"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>companyname</FormLabel>
+                                    <FormLabel>Company Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="companyname" {...field} />
+                                        <Input placeholder="e.g " {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="site"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Joblisting Source</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="e.g Jobstreet link" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -112,9 +126,9 @@ export default function AddJobDialog({ open, setOpen }: IAddJob) {
                             name="description"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>description</FormLabel>
+                                    <FormLabel>Job Description</FormLabel>
                                     <FormControl>
-                                        <Textarea placeholder="description" {...field} />
+                                        <Textarea placeholder="e.g Salary, Requirements" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
