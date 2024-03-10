@@ -94,7 +94,7 @@ export default async function page({ searchParams }: any) {
                 }
                 {
                     allJobs?.length === 0 &&
-                    <p>No job entries with this filter</p>
+                    <p>No job entries</p>
                 }
 
             </div>
