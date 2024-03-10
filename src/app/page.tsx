@@ -61,16 +61,16 @@ export default function Home() {
             <div className="hidden lg:block ml-auto">
               <div className="flex items-center">
                 <a
-                  className="inline-block mr-9 text-sm font-semibold text-orange-900 hover:text-gray-900"
-                  href="#"
+                  className="inline-block mr-9 text-sm font-semibold text-[#5964E0] hover:text-gray-900"
+                  href="/sign-in"
                 >
                   Sign In
                 </a>
                 <a
-                  className="relative group inline-block py-3 px-4 text-sm font-semibold text-orange-900 hover:text-white border border-gray-200 rounded-md overflow-hidden transition duration-300"
-                  href="#"
+                  className="relative group inline-block py-3 px-4 text-sm font-semibold text-[#5964E0] hover:text-white border border-gray-200 rounded-md overflow-hidden transition duration-300"
+                  href="/sign-up"
                 >
-                  <div className="absolute top-0 right-full w-full h-full bg-orange-900 transform group-hover:translate-x-full group-hover:scale-102 transition duration-500" />
+                  <div className="absolute top-0 right-full w-full h-full bg-[#5964E0] transform group-hover:translate-x-full group-hover:scale-102 transition duration-500" />
                   <span className="relative">Create an account</span>
                 </a>
               </div>
@@ -142,7 +142,7 @@ export default function Home() {
                 </div>
                 <div className="sm:flex items-center">
                   <a
-                    className="relative group inline-block w-full sm:w-auto py-4 px-6 text-white font-semibold bg-orange-900 rounded-md overflow-hidden"
+                    className="relative group inline-block w-full sm:w-auto py-4 px-6 text-white font-semibold bg-[#5964E0] rounded-md overflow-hidden"
                     href="/jobs"
                   >
                     <div className="absolute top-0 right-full w-full h-full bg-gray-900 transform group-hover:translate-x-full group-hover:scale-102 transition duration-500" />
@@ -265,14 +265,14 @@ export default function Home() {
             </div>
             <div className="flex px-6 mb-16 items-center">
               <a
-                className="inline-block mr-9 text-sm font-semibold text-orange-900 hover:text-gray-900"
-                href="#"
+                className="inline-block mr-9 text-sm font-semibold text-[#5964E0] hover:text-gray-900"
+                href="/sign-in"
               >
                 Sign In
               </a>
               <a
-                className="inline-block py-3 px-4 text-sm font-semibold text-orange-900 hover:text-white border border-gray-300 hover:border-orange-600 hover:bg-orange-900 rounded-md transition duration-200"
-                href="#"
+                className="inline-block py-3 px-4 text-sm font-semibold text-[#5964E0] hover:text-white border border-gray-300 hover:border-orange-600 hover:bg-orange-900 rounded-md transition duration-200"
+                href="/sign-up"
               >
                 Create an account
               </a>

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Sign In | Noted Po"
+    title: "Sign In | WorkBodia"
 }
 
 import { SignIn } from "@clerk/nextjs";

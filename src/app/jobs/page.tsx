@@ -9,17 +9,47 @@ import { auth } from '@clerk/nextjs'
 export default async function page({ searchParams }: any) {
 
     // console.log(searchParams);
+    const location = searchParams.location
+    const job = searchParams.job
 
+    function isEmpty() {
+        return Object.keys(searchParams).length === 0;
+    }
+
+    const status = isEmpty()
 
     const { userId } = auth()
 
     let allJobs
-    if (userId) {
+    if (userId && status) {
         allJobs = await prisma.jobs.findMany({ where: { userId }, orderBy: { createdAt: 'desc' } })
     } else {
-        allJobs = await prisma.jobs.findMany({ orderBy: { createdAt: 'desc' } })
-    }
+        if (searchParams) {
+            allJobs = await prisma.jobs.findMany({
+                where: {
+                    OR: [
+                        {
+                            country: {
+                                contains: location,
+                                mode: 'insensitive'
+                            },
+                            title: {
+                                contains: job,
+                                mode: 'insensitive'
+                            }
+                        }
+                    ]
+                },
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            }
+            )
 
+        } else {
+            allJobs = await prisma.jobs.findMany({ orderBy: { createdAt: 'desc' } })
+        }
+    }
 
     return (
         <div className='maxWidth -mt-[39px] relative z-10'>
@@ -63,7 +93,7 @@ export default async function page({ searchParams }: any) {
                     })
                 }
                 {
-                    !allJobs &&
+                    allJobs?.length === 0 &&
                     <p>No job entries with this filter</p>
                 }
 
